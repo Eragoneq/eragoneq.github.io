@@ -1,0 +1,94 @@
+@import "./main"
+
+// Navbar
+body
+    margin: 0
+    font-family: $mainfont
+
+.navbar
+    position: fixed
+    display: flex
+    justify-content: space-between
+    width: 100%
+    height: 5em
+    background-color: $dark
+
+.links
+    display: flex
+    justify-content: space-evenly
+    min-width: 25%
+
+.nav-el, .logo
+    // height: 100%
+    font-size: 1.5em
+    display: flex
+    padding: 10px
+    text-align: center
+    align-items: center
+    color: $background
+
+// Main header
+
+// Background shapes
+.shapes
+    position: relative
+    width: 100%
+    z-index: -100
+    overflow: hidden
+
+.rectangle
+    width: 100%
+    height: 500px
+    background-color: $primary
+
+.triangles
+    display: flex
+
+.triangle
+    width: 0
+    height: 0
+    border-style: solid
+
+#tri1
+    border-width: 0 100vw*2/3 300px 0
+    border-color: transparent $primary transparent transparent
+
+
+#tri2
+    border-width: 300px 100vw*2/3 0 0
+    border-color: $primary transparent transparent transparent
+
+// Name
+
+.welcome
+    position: absolute
+    display: flex
+    flex-direction: column
+    text-align: center
+    justify-content: center
+    padding: 1rem
+    right: 5rem
+    top: 10rem
+    color: $dark
+    font-size: 100px
+
+#line1
+    color: white
+    font-size: 100px
+    text-align: right
+    margin-right: 20px
+
+#line2
+    text-align: right
+    margin-right: 20px
+
+.linedivide
+    border: 1px solid $shadow
+    margin: 15px
+
+#line3
+    color: $shadow
+    font-size: 36px
+    margin-right: 20px
+    margin-left: 20px
+    
