@@ -2,6 +2,8 @@
 body {
   margin: 0;
   font-family: "Exo 2", sans-serif;
+  background: #FFFFFF;
+  background: linear-gradient(180deg, #ffffff 20%, #D2D8D8 100%);
 }
 
 .navbar {
@@ -10,6 +12,7 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 5em;
+  z-index: 1000;
   background-color: #24262F;
 }
 
@@ -96,6 +99,115 @@ body {
   font-size: 36px;
   margin-right: 20px;
   margin-left: 20px;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-items: center;
+  width: 75%;
+  left: 12.5%;
+}
+
+.content {
+  position: relative;
+  height: 1800px;
+}
+
+.hex:before {
+  content: " ";
+  width: 0;
+  height: 0;
+  border-bottom: 150px solid #C4C4C4;
+  border-left: 259.8075px solid transparent;
+  border-right: 259.8075px solid transparent;
+  position: absolute;
+  top: -150px;
+}
+
+.hex {
+  margin-top: 150px;
+  width: 519.615px;
+  height: 300px;
+  background-color: #C4C4C4;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: drop-shadow(4px 4px 4px #616A77);
+}
+
+.hex:after {
+  content: "";
+  width: 0;
+  position: absolute;
+  bottom: -150px;
+  border-top: 150px solid #C4C4C4;
+  border-left: 259.8075px solid transparent;
+  border-right: 259.8075px solid transparent;
+}
+
+.hexcontainer {
+  top: -50px;
+}
+
+.title {
+  font-size: 48px;
+  text-align: center;
+}
+
+.text {
+  font-size: 24px;
+  text-align: justify;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#about {
+  top: 100px;
+}
+
+#skills {
+  top: 200px;
+  transform: translateX(-112%);
+}
+
+#resume {
+  top: 300px;
+}
+
+.contact {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 150px;
+}
+
+.contactinfo {
+  text-align: center;
+  padding: 2em;
+  font-size: 36px;
+}
+
+.contactbox {
+  width: 300px;
+  height: 3em;
+  font-size: 24px;
+  text-align: center;
+  background: #24262F;
+  color: #D2D8D8;
+}
+
+#tri3 {
+  border-width: 0 0 200px 25vw;
+  border-color: transparent transparent #24262F transparent;
+}
+
+#tri4 {
+  border-width: 200px 0 0 75vw;
+  border-color: transparent transparent transparent #24262F;
 }
 
 /*# sourceMappingURL=index.css.map */

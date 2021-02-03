@@ -4,6 +4,8 @@
 body
     margin: 0
     font-family: $mainfont
+    background: #FFFFFF
+    background: linear-gradient(180deg, #ffffff 20%, $background 100%)
 
 .navbar
     position: fixed
@@ -11,6 +13,7 @@ body
     justify-content: space-between
     width: 100%
     height: 5em
+    z-index: 1000
     background-color: $dark
 
 .links
@@ -91,4 +94,108 @@ body
     font-size: 36px
     margin-right: 20px
     margin-left: 20px
+
+// Content container
+
+.container
+    display: flex
+    position: relative
+    flex-direction: column
+    justify-items: center
+    width: 75%
+    left: 12.5%
+
+
+// Content
+
+.content 
+    position: relative
+    height: $hexsize * 12
+
+.hex:before 
+    content: " "
+    width: 0
+    height: 0
+    border-bottom: $hexsize solid $primary
+    border-left: $hexsize*1.73205 solid transparent
+    border-right: $hexsize*1.73205 solid transparent
+    position: absolute
+    top: $hexsize*(-1)
+
+
+.hex 
+    margin-top: $hexsize
+    width: $hexsize*1.73205*2
+    height: $hexsize*2
+    background-color: $primary
+    position: relative
+    left: 50%
+    transform: translateX(-50%)
+    filter: drop-shadow(4px 4px 4px $shadow)
+
+
+.hex:after 
+    content: ""
+    width: 0
+    position: absolute
+    bottom: $hexsize*(-1)
+    border-top: $hexsize solid $primary
+    border-left: $hexsize*1.73205 solid transparent
+    border-right: $hexsize*1.73205 solid transparent
+
+.hexcontainer
+    top: -50px
+
+.title
+    font-size: 48px
+    text-align: center
+
+.text
+    font-size: 24px
+    text-align: justify
+    padding-left: 15px
+    padding-right: 15px
+
+#about
+    top: 100px
+
+#skills
+    top: 200px
+    transform: translateX(-112%)
+
+#resume
+    top: 300px
+
+// Contact
+
+.contact
+    display: flex
+    position: relative
+    justify-content: center
+    text-align: center
+    flex-direction: column
+    margin-top: $hexsize
     
+
+.contactinfo
+    text-align: center
+    padding: 2em
+    font-size: 36px
+
+.contactbox
+    width: 300px
+    height: 3em
+    font-size: 24px
+    text-align: center
+    background: $dark
+    color: $background
+
+// Closing
+
+#tri3
+    border-width: 0 0 200px 100vw*1/4
+    border-color: transparent transparent $dark transparent
+#tri4
+    border-width: 200px 0 0 100vw*3/4
+    border-color: transparent transparent transparent $dark
+
