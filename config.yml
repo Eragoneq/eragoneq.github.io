@@ -80,6 +80,8 @@ params:
           url: "https://stackoverflow.com/users/11293488"
         - name: github
           url: "https://github.com/Eragoneq"
+        - name: email
+          url: "mailto://eragon.skill@gmail.com"
 
     analytics:
         google:
@@ -119,11 +121,11 @@ menu:
           name: tags
           url: /tags/
           weight: 20
-        # TODO: Add proper pages for these links
-        # - identifier: projects
-        #   name: projects
-        #   url: /projects/
-        #   weight: 30
+        - identifier: projects
+          name: projects
+          url: /projects/
+          weight: 30
+        # TODO: Add a custom contact page
         # - identifier: contact
         #   name: contact
         #   url: /contact/
