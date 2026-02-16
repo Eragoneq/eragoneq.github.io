@@ -59,7 +59,7 @@ params:
   profileMode:
     enabled: true # needs to be explicitly set
     title: "Eragoneq"
-    subtitle: "Hi, I'm Eragoneq. This website is a place to publish my projects and all the things I'm thinking about. This might also work as my portfolio for anyone interested in my achievements."
+    subtitle: "Hi, I'm Eragoneq. This website is a place to publish my projects and all the things I'm thinking about. This also works as my portfolio for anyone interested in my achievements."
     imageUrl: "https://avatars.githubusercontent.com/u/11816936?s=400&u=1c9e8bf3a5354dce7d285d5eea6b8abb3b5a73eb&v=4"
     imageWidth: 150
     imageHeight: 150
