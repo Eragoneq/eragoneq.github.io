@@ -13,7 +13,6 @@ hidemeta: false
 comments: false
 description: "Time to finally start out with blogging about the ideas that I have in mind."
 canonicalURL: "https://canonical.url/to/page"
-disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false
 hideSummary: false
