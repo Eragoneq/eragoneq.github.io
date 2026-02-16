@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://eragoneq.github.io/sitemap.xml
