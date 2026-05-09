@@ -1,0 +1,209 @@
+/* Global */
+
+:root {
+    --main-bg-color: black;
+    --main-text-color: white;
+    --secondary-text-color: white;
+    --main-hover-color: #272727;
+    --main-border-color: white;
+    --url-color: #0041c7;
+}
+
+@font-face {
+    font-family: "Ioskeley Mono";
+    src: url("/static/fonts/IoskeleyMono/IoskeleyMono-Regular.woff2")
+        format("woff2");
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+
+    margin: auto;
+    max-width: 45vw;
+    min-width: 39.5em;
+
+    font-family: "Ioskeley Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--main-text-color);
+    font-size: 1em;
+
+    background-color: var(--main-bg-color);
+
+    border-left: 2px dotted var(--main-border-color);
+    border-right: 2px dotted var(--main-border-color);
+}
+
+* {
+    margin: 0;
+}
+
+a {
+    color: var(--url-color);
+    font-weight: bold;
+}
+
+code {
+    background-color: var(--main-hover-color);
+    padding: 0.1em 0.3em;
+}
+
+/* General */
+
+.bitcount {
+    font-family: "Bitcount Grid Double", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "CRSV" 0.5,
+        "ELSH" 0,
+        "ELXP" 0;
+}
+
+h1 {
+    padding: 0.3em;
+}
+
+article,
+section {
+    padding: 1.5em;
+}
+
+section > h2 {
+    margin-bottom: 0.2em;
+    padding-bottom: 0.1em;
+    border-bottom: 2px solid var(--main-border-color);
+}
+
+ul > li::marker {
+    content: "❱ ";
+    font-size: 1em;
+}
+
+main,
+footer,
+header {
+    border-bottom: 2px dotted var(--main-border-color);
+    margin: 1px; /* It is present to avoid awkward touching of different dotted borders. */
+}
+
+/* Header section */
+
+header,
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.filler {
+    flex: 1;
+}
+
+nav > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+    font-size: 1em;
+    min-width: 5em;
+    border-left: 2px dotted var(--main-border-color);
+    color: var(--main-text-color);
+}
+
+nav > a:hover {
+    background-color: var(--main-hover-color);
+    transition: background-color 0.3s ease;
+}
+
+header > h1 {
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+}
+
+/* Main section */
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+main p {
+    padding-top: 0.3em;
+}
+
+ul {
+    padding-left: 1.5em;
+    list-style: none;
+}
+
+hr {
+    border: none;
+    border-top: 2px dotted var(--main-border-color);
+}
+
+/* Footer section */
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: none;
+}
+
+footer > * {
+    padding: 0.5em;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer > *:not(:last-child) {
+    border-right: 2px dotted var(--main-border-color);
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+canvas {
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    image-rendering: pixelated;
+    z-index: -100;
+}
+
+/* Micro-branding section */
+
+.micro-branding {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    text-align: left;
+    gap: 0.5em;
+}
+
+.micro-branding > img {
+    height: 3em;
+    grid-row: 1 / 3;
+}
+
+.underline {
+    border-bottom: 2px solid var(--main-text-color);
+    padding-bottom: 0.5em;
+}

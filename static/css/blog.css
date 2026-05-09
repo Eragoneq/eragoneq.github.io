@@ -1,0 +1,29 @@
+article.blog-entry {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+article.blog-entry > time {
+    display: flex;
+    grid-column: 2;
+    border-bottom: 1px solid var(--main-text-color);
+    align-items: center;
+    justify-content: right;
+    font-size: 1.2em;
+}
+
+article.blog-entry > h2 {
+    grid-column: 1;
+    padding-bottom: 0.2em;
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--main-text-color);
+}
+
+article.blog-entry > p {
+    grid-row: 2;
+    grid-column: 1 / -1;
+}
+
+/*article.blog-entry:hover {
+    background-color: var(--main-hover-color);
+}*/

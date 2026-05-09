@@ -1,0 +1,23 @@
+.lod {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;
+}
+
+.lod:hover {
+    cursor: help;
+}
+
+.lod::after {
+    content: "\2122";
+}
+
+section > hr {
+    border: none;
+    border-top: 2px solid var(--main-text-color);
+    margin: 1em 0;
+}
+
+section > p {
+    margin: 0.5em 0;
+}

@@ -1,0 +1,50 @@
+main > h1 {
+    border-bottom: 1px solid var(--main-text-color);
+    font-size: 1.5em;
+    padding: 0.5em 0;
+}
+
+main > p {
+    font-size: 1em;
+    padding-top: 0.5em;
+}
+
+main > hr {
+    border-top: 1px solid var(--main-text-color);
+    margin: 1em 0;
+}
+
+main > h2,
+main > h3 {
+    padding-top: 1em;
+}
+
+main {
+    padding: 1em;
+}
+
+pre {
+    background-color: var(--main-bg-color);
+    padding: 1em;
+    overflow-x: auto;
+    border: 1px dotted var(--main-text-color);
+    margin: 1em 0;
+}
+
+pre > code {
+    background-color: transparent;
+    padding: 0;
+}
+
+ol,
+ul {
+    margin: 1em 0;
+}
+
+.post-meta {
+    font-size: 0.8em;
+    color: var(--secondary-text-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
