@@ -1,0 +1,328 @@
+/* micrographics.css — reusable decorative elements (.mg-*)
+   Categories: markers, patterns, frames & signals,
+   text marks, sharp patterns, brand.
+   Note: .mg-caret reuses @keyframes blink from typography.css. */
+
+/* ---------- markers ---------- */
+
+.mg-cross {
+  width: 18px;
+  height: 18px;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 100% 2px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) center / 2px 100% no-repeat;
+}
+
+.mg-cross.accent {
+  background:
+    linear-gradient(var(--accent), var(--accent)) center / 100% 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) center / 2px 100% no-repeat;
+}
+
+.mg-beacon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: relative;
+}
+
+.mg-beacon::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: mg-pulse 1.8s ease-out infinite;
+}
+
+@keyframes mg-pulse {
+  0%   { transform: scale(0.45); opacity: 0.9; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.mg-caret {
+  width: 13px;
+  height: 22px;
+  background: var(--ink);
+  animation: blink 1s steps(1) infinite;
+}
+
+.mg-chevrons {
+  color: var(--muted);
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+
+.mg-chevrons b {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---------- patterns ---------- */
+
+.mg-dotmatrix {
+  width: 108px;
+  height: 52px;
+  background-image: radial-gradient(var(--ink) 1.6px, transparent 1.7px);
+  background-size: 12px 12px;
+}
+
+.mg-dotmatrix.accent {
+  background-image: radial-gradient(var(--accent) 1.6px, transparent 1.7px);
+}
+
+.mg-dotline {
+  width: 132px;
+  height: 5px;
+  background-image: radial-gradient(circle, var(--muted) 2px, transparent 2.4px);
+  background-size: 15px 5px;
+  background-repeat: repeat-x;
+}
+
+.mg-barcode {
+  width: 128px;
+  height: 34px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--ink) 0 2px, transparent 2px 6px,
+      var(--ink) 6px 10px, transparent 10px 13px),
+    repeating-linear-gradient(90deg,
+      rgba(242, 242, 242, 0.35) 0 1px, transparent 1px 4px);
+}
+
+.mg-ruler {
+  width: 132px;
+  height: 14px;
+  position: relative;
+}
+
+.mg-ruler::before {
+  content: "";
+  position: absolute;
+  inset: 4px 0 0;
+  background: repeating-linear-gradient(90deg,
+    var(--muted) 0 1px, transparent 1px 8px);
+}
+
+.mg-ruler::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 14px;
+  background: repeating-linear-gradient(90deg,
+    var(--ink) 0 1px, transparent 1px 33px);
+}
+
+.mg-dither {
+  color: var(--muted);
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+}
+
+/* ---------- frames & signals ---------- */
+
+.mg-frame {
+  width: 68px;
+  height: 68px;
+  position: relative;
+}
+
+.mg-frame::before,
+.mg-frame::after,
+.mg-frame i::before,
+.mg-frame i::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid var(--ink);
+}
+
+.mg-frame::before { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.mg-frame::after  { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.mg-frame i       { position: absolute; inset: 0; }
+.mg-frame i::before { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.mg-frame i::after  { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+.mg-scan {
+  width: 84px;
+  height: 52px;
+  border: 1px solid #2a2a2a;
+  position: relative;
+  overflow: hidden;
+}
+
+.mg-scan::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--accent);
+  animation: mg-scan 2.4s linear infinite;
+}
+
+@keyframes mg-scan {
+  0%   { top: 0; }
+  100% { top: calc(100% - 2px); }
+}
+
+.mg-wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 30px;
+}
+
+.mg-wave i {
+  width: 3px;
+  background: var(--ink);
+}
+
+.mg-signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 22px;
+}
+
+.mg-signal i { width: 5px; background: var(--ink); }
+.mg-signal i.off { background: #2c2c2c; }
+
+.mg-seg {
+  display: flex;
+  gap: 4px;
+}
+
+.mg-seg i {
+  width: 16px;
+  height: 8px;
+  background: #232323;
+}
+
+.mg-seg i.on  { background: var(--ink); }
+.mg-seg i.acc { background: var(--accent); }
+
+/* ---------- text marks ---------- */
+
+.mg-coords {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.mg-coords b { color: var(--ink); font-weight: 400; }
+
+.mg-redact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 120px;
+}
+
+.mg-redact i {
+  height: 9px;
+  background: #000;
+  border: 1px solid #222;
+}
+
+.mg-redact i.short { width: 62%; }
+.mg-redact em {
+  display: block;
+  height: 2px;
+  background: var(--accent);
+}
+
+.mg-target {
+  color: var(--ink);
+  display: block;
+}
+
+/* ---------- sharp patterns ---------- */
+
+.mg-checker {
+  width: 108px;
+  height: 52px;
+  background-image: repeating-conic-gradient(var(--ink) 0% 25%, transparent 0% 50%);
+  background-size: 14px 14px;
+}
+
+.mg-checker.accent {
+  background-image: repeating-conic-gradient(var(--accent) 0% 25%, transparent 0% 50%);
+}
+
+.mg-ditherfade {
+  width: 132px;
+  height: 40px;
+  background-image: repeating-conic-gradient(var(--ink) 0% 25%, transparent 0% 50%);
+  background-size: 8px 8px;
+  -webkit-mask-image: linear-gradient(90deg,
+    #000 0 34%, rgba(0, 0, 0, 0.55) 34% 67%, rgba(0, 0, 0, 0.18) 67% 100%);
+  mask-image: linear-gradient(90deg,
+    #000 0 34%, rgba(0, 0, 0, 0.55) 34% 67%, rgba(0, 0, 0, 0.18) 67% 100%);
+}
+
+.mg-hazard {
+  width: 132px;
+  height: 26px;
+  border: 1px solid var(--line);
+  background-image: repeating-linear-gradient(-45deg,
+    var(--ink) 0 7px, transparent 7px 16px);
+}
+
+.mg-hazard.accent {
+  background-image: repeating-linear-gradient(-45deg,
+    var(--accent) 0 7px, transparent 7px 16px);
+}
+
+.mg-steps {
+  width: 15px;
+  height: 15px;
+  background: var(--ink);
+  box-shadow:
+    15px -15px 0 var(--muted),
+    30px -30px 0 var(--muted),
+    45px -45px 0 var(--muted),
+    60px -60px 0 var(--accent);
+}
+
+.mg-scanlines {
+  width: 108px;
+  height: 52px;
+  border: 1px solid var(--line);
+  background-image: repeating-linear-gradient(0deg,
+    var(--ink) 0 1px, transparent 1px 7px);
+}
+
+/* ---------- brand ---------- */
+
+.mg-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  padding: 9px 16px 9px 12px;
+  border: 1px solid var(--ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 2em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.mg-tag svg {
+  display: block;
+  height: 1em;
+  fill: currentColor;
+}
+
+.mg-tag:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}

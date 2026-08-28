@@ -1,0 +1,38 @@
+/* contact.css — channel link rows */
+
+.contact-links {
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.contact-links li {
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background 0.15s ease;
+}
+
+.contact-links a:hover {
+  background: var(--bg-elevated);
+}
+
+.contact-links a:hover .handle {
+  color: var(--accent);
+}
+
+.contact-links .label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+}
+
+.handle {
+  transition: color 0.15s ease;
+}

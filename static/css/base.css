@@ -1,0 +1,63 @@
+/* base.css — design tokens, reset, global element styles */
+
+:root {
+  --bg: #040308;
+  --bg-elevated: #1E0304;
+  --ink: #f2f2f2;
+  --muted: #9D9D9D;
+  --line: #420203;
+  --accent: #F27405;
+
+  --font-display: "Doto", ui-monospace, "Cascadia Mono", "JetBrains Mono",
+    Menlo, Consolas, monospace;
+  --font-body: "Space Mono", ui-monospace, "Cascadia Mono", "JetBrains Mono",
+    Menlo, Consolas, monospace;
+
+  --pad: clamp(20px, 5vw, 64px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+/* subtle scanline grid over the whole page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

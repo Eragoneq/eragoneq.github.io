@@ -1,0 +1,58 @@
+/* typography.css — headings, kicker, blinking cursor, lede, meta rows */
+
+.kicker {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  margin-bottom: 18px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(30px, 6vw, 58px);
+}
+
+h1 .cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.9em;
+  background: var(--accent);
+  vertical-align: -0.08em;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.lede {
+  color: var(--muted);
+  max-width: 60ch;
+  margin-top: 20px;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 28px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.meta-row span b {
+  color: var(--ink);
+  font-weight: 400;
+}

@@ -1,0 +1,53 @@
+/* micro.css — specimen grid used on the micrographics library page */
+
+.specimen-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.specimen {
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease;
+}
+
+.specimen:hover {
+  border-color: #333;
+}
+
+.spec-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.spec-top .id { color: var(--accent); }
+.spec-top .name { color: var(--muted); }
+
+.spec-preview {
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  background-image: radial-gradient(#181818 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.spec-note {
+  margin-top: auto;
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}

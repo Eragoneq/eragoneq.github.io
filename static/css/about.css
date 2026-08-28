@@ -1,0 +1,54 @@
+/* about.css — bio grid and facts table */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, 1fr);
+  gap: 48px;
+}
+
+.about-grid p + p {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.facts {
+  list-style: none;
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  font-size: 12px;
+}
+
+.facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.facts li:last-child {
+  border-bottom: 0;
+}
+
+.facts .k { color: var(--muted); }
+
+.facts li.deco-row {
+  justify-content: center;
+  padding: 18px;
+}
+
+.facts li.deco-row:last-child {
+  border-bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lod {
+  text-decoration: underline dotted beige;
+}

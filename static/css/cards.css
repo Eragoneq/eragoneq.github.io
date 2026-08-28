@@ -1,0 +1,90 @@
+/* cards.css — list rows for blog posts, projects, principles */
+
+.card-list {
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.card {
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s ease;
+}
+
+.card a {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 8px 24px;
+  align-items: baseline;
+  padding: 26px 8px;
+}
+
+.card:hover {
+  background: var(--bg-elevated);
+}
+
+.card:hover .card-title {
+  color: var(--accent);
+}
+
+.card-date {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.15s ease;
+}
+
+.card-desc {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 62ch;
+}
+
+.card-tag {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .card a {
+    grid-template-columns: 1fr auto;
+  }
+  .card-date {
+    grid-column: 1 / -1;
+  }
+  .card-desc {
+    grid-column: 1 / -1;
+  }
+}
+
+/* status dot for projects */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status.active { color: #3ddc84; }
+.status.wip    { color: #ffb020; }
+.status.done   { color: var(--muted); }

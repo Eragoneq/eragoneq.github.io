@@ -1,0 +1,68 @@
+/* header.css — sticky site header, brand mark, primary nav */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px var(--pad);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.brand .brand-mark {
+  display: inline;
+  height: 17px;
+  width: auto;
+  transition: opacity 0.15s ease;
+  vertical-align: middle;
+}
+
+.brand:hover .brand-mark {
+  opacity: 0.6;
+}
+
+.site-nav {
+  display: flex;
+  gap: clamp(14px, 3vw, 32px);
+  overflow-x: auto;
+}
+
+.site-nav a {
+  color: var(--muted);
+  transition: color 0.15s ease;
+  padding: 4px 2px;
+}
+
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+}
+
+.site-nav a[aria-current="page"]::before {
+  content: "[ ";
+  color: var(--accent);
+}
+
+.site-nav a[aria-current="page"]::after {
+  content: " ]";
+  color: var(--accent);
+}

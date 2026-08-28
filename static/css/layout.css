@@ -1,0 +1,68 @@
+/* layout.css — page container, page-head pattern, section labels, home hero */
+
+main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--pad) 96px;
+}
+
+.page-head {
+  position: relative;
+  padding: clamp(56px, 10vh, 120px) 0 40px;
+}
+
+/* subtle corner decoration in the head whitespace */
+.page-head .deco {
+  position: absolute;
+  top: clamp(14px, 3vh, 32px);
+  right: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 64px 0 24px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--muted);
+}
+
+.section-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+}
+
+.section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* ---------- home hero ---------- */
+
+.hero {
+  padding: clamp(72px, 16vh, 160px) 0 48px;
+}
+
+.hero h1 {
+  max-width: 16ch;
+}
+
+.hero .mg-ditherfade {
+  display: block;
+  margin-top: 36px;
+  width: min(100%, 420px);
+}
