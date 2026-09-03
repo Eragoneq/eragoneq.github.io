@@ -31,7 +31,7 @@ class SiteBuilderTest {
             static.resolve("css/main.css").writeText("body {}")
             static.resolve("js/script.js").writeText("")
             static.resolve("img/logo.svg").writeText("<svg xmlns=\"http://www.w3.org/2000/svg\"/>")
-            static.resolve("img/favico.svg").writeText("<svg xmlns=\"http://www.w3.org/2000/svg\"/>")
+            static.resolve("favicon.svg").writeText("<svg xmlns=\"http://www.w3.org/2000/svg\"/>")
 
             val output = root.resolve("public")
             val config = testSiteConfig("/journal")
