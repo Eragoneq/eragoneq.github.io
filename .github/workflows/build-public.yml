@@ -51,7 +51,7 @@ jobs:
         if: ${{ github.server_url == 'https://github.com' }}
         uses: actions/upload-pages-artifact@v3
         with:
-          name: public-site
+          name: github-pages
           path: public/
           retention-days: 14
 
