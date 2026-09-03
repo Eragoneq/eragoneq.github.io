@@ -52,7 +52,7 @@ fun basePage(
 fun HEAD.headFragment(pageTitle: String, site: SiteConfig) {
     meta(charset = "UTF-8")
     meta(name = "viewport", content = "width=device-width, initial-scale=1.0")
-    link(rel = "icon", type = "image/svg+xml", href = site.sitePath("static/img/favico.svg"))
+    link(rel = "icon", type = "image/svg+xml", href = site.sitePath("favicon.svg"))
     link(rel = "preconnect", href = "https://fonts.googleapis.com")
     link(rel = "preconnect", href = "https://fonts.gstatic.com") {
         attributes["crossorigin"] = ""

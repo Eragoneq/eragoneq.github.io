@@ -5,6 +5,7 @@ import models.Entry
 import models.EntryKind
 import models.SiteConfig
 import templates.*
+import java.io.File
 import java.nio.file.Path
 import java.time.Clock
 import java.time.LocalDate
@@ -72,6 +73,8 @@ class SiteBuilder(
 
         // Copy the entire static directory tree
         staticSrcDir.toFile().copyRecursively(staticOutDir.toFile(), overwrite = true)
+
+        (staticOutDir / "favicon.svg").toFile().copyTo((outputDir / "favicon.svg").toFile(), overwrite = true)
     }
 
     private fun writeStaticPages(posts: List<Entry>, projects: List<Entry>, context: BuildContext) {
