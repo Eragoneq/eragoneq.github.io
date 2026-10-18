@@ -6,8 +6,6 @@ last_update: 2026-08-28
 status: Active
 ---
 
-# Blog Generator
-
 A custom static site generator for my personal website. Used as a replacement for my previous workflow that utilized Hugo with PaperMod.
 The previous workflow was too slow and annoying for my needs, so I decided to create a lightweight generator that could handle my specific requirements.
 

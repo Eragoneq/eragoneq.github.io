@@ -1,68 +1,194 @@
-/* layout.css — page container, page-head pattern, section labels, home hero */
-
+/* Layout: a compact personal page with a shared label gutter. */
 main {
   position: relative;
-  z-index: 1;
   flex: 1;
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 var(--pad) 96px;
+  padding: 0 var(--pad) 72px;
 }
 
-.page-head {
+.home-intro {
   position: relative;
-  padding: clamp(56px, 10vh, 120px) 0 40px;
+  margin: 48px 0 0 136px;
+  max-width: min(72ch, calc(100% - 136px));
 }
 
-/* subtle corner decoration in the head whitespace */
-.page-head .deco {
+.home-intro h1 {
+  font-size: clamp(1.75rem, 4vw, 2.625rem);
+  text-wrap: balance;
+}
+
+.home-intro p {
+  margin-top: 20px;
+  line-height: 1.85;
+}
+
+.intro-decoration {
   position: absolute;
-  top: clamp(14px, 3vh, 32px);
+  top: 8px;
+  right: -136px;
+  width: 112px;
+  height: 72px;
+  pointer-events: none;
+}
+
+.intro-decoration .mg-ditherfade {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 96px;
+  height: 48px;
+  opacity: 0.65;
+}
+
+.intro-decoration::before,
+.intro-decoration::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+}
+
+.intro-decoration::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--muted);
+  border-left: 1px solid var(--muted);
+}
+
+.intro-decoration::after {
   right: 0;
+  bottom: 0;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.home-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, var(--muted) 22%, transparent);
+  scroll-margin-top: 96px;
+}
+
+.home-section::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 13px 1px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) center / 1px 13px no-repeat;
   opacity: 0.55;
   pointer-events: none;
 }
 
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 64px 0 24px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: var(--muted);
+.home-section::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  pointer-events: none;
 }
 
-.section-label::before {
+.home-section > h2 {
+  padding-top: 3px;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  text-align: right;
+  color: var(--accent);
+}
+
+.home-section-content { min-width: 0; }
+.home-prose { max-width: 72ch; }
+.home-prose p + p { margin-top: 12px; }
+.home-prose a,
+.section-more a { color: var(--accent); }
+.home-prose a { text-decoration: underline; text-underline-offset: 4px; }
+.section-more { margin-top: 12px; font-size: var(--text-secondary); }
+.section-more a { display: inline-flex; align-items: center; min-height: 44px; }
+.empty-note { color: var(--muted); }
+
+.page-head {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 32px;
+  padding: 48px 0 28px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 22%, transparent);
+}
+.page-head > :not(.page-decoration) { grid-column: 1; }
+.page-head::after {
   content: "";
-  width: 7px;
-  height: 7px;
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  width: 5px;
+  height: 5px;
   background: var(--accent);
 }
-
-.section-label::after {
+.page-decoration {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  width: 96px;
+  height: 48px;
+  pointer-events: none;
+}
+.page-decoration .mg-ditherfade {
+  position: absolute;
+  inset: 8px;
+  width: auto;
+  height: auto;
+  opacity: 0.65;
+}
+.page-decoration::before,
+.page-decoration::after {
   content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--line);
+  position: absolute;
+  width: 8px;
+  height: 8px;
+}
+.page-decoration::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--muted);
+  border-left: 1px solid var(--muted);
+}
+.page-decoration::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+}
+.page-head h1 { font-size: clamp(1.75rem, 4vw, 2.625rem); text-wrap: balance; }
+
+@media (min-width: 961px) {
+  .home-intro { max-width: calc(100% - 272px); }
 }
 
-/* ---------- home hero ---------- */
-
-.hero {
-  padding: clamp(72px, 16vh, 160px) 0 48px;
+@media (max-width: 960px) {
+  .intro-decoration { display: none; }
 }
 
-.hero h1 {
-  max-width: 16ch;
-}
-
-.hero .mg-ditherfade {
-  display: block;
-  margin-top: 36px;
-  width: min(100%, 420px);
+@media (max-width: 680px) {
+  main { padding-bottom: 48px; }
+  .home-intro { margin: 32px 0 0; max-width: 72ch; }
+  .home-section { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 32px; }
+  .home-section > h2 { text-align: left; }
+  .page-head { padding: 32px 0 24px; column-gap: 16px; }
+  .page-decoration { width: 48px; height: 28px; }
+  .page-head > .lede, .page-head > .meta-row { grid-column: 1 / -1; }
 }

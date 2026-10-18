@@ -1,93 +1,96 @@
 package templates
 
 import kotlinx.html.*
+import kotlinx.html.stream.createHTML
 import models.BuildContext
 import models.Entry
 
 fun homePage(posts: List<Entry>, projects: List<Entry>, context: BuildContext): String =
-    basePage("index", NavItem.INDEX, context) {
-        section(classes = "hero") {
-            p(classes = "kicker") { +"Personal site - est. ${context.year}" }
-            h1 {
-                +"Hi, I'm Eragoneq."
-                span(classes = "cursor")
-            }
-            p(classes = "lede") {
-                +"Professional and hobbyist software developer, with a focus on cybersecurity and privacy. "
+    basePage("Home", NavItem.INDEX, context) {
+        section(classes = "home-intro") {
+            h1 { +"Hi, I'm Eragoneq." }
+            p {
+                +"I'm Michał, a professional and hobbyist software developer with a focus on cybersecurity and privacy. "
                 +"This is my personal website, where I share my work, thoughts and projects."
             }
-            div(classes = "meta-row") {
-                span {
-                    +"SYS "
-                    b { +"ONLINE" }
-                }
-                span {
-                    +"MODE "
-                    b { +"DARK" }
-                }
-                span {
-                    +"LAST UPDATE "
-                    b { +cardDate(context.buildDate) }
-                }
-            }
-            span(classes = "mg-ditherfade") {
+            span(classes = "intro-decoration") {
                 attributes["aria-hidden"] = "true"
+                span(classes = "mg-ditherfade") {}
             }
         }
 
-        h2(classes = "section-label") { +"Latest entries" }
-        if (posts.isEmpty()) {
-            emptyEntriesNote()
-        } else {
-            ul(classes = "card-list") {
-                posts.take(context.site.homePostLimit).forEach { post ->
-                    cardRow(
-                        href = context.site.sitePath(post.url),
-                        date = cardDate(post.date),
-                        titleText = post.title,
-                        desc = post.subtitle,
-                    )
+        homeSection("contact", "Contact") {
+            ul(classes = "contact-links") {
+                contactLink("E-mail", "eragoneq [at] pm.me", "mailto:eragoneq@pm.me")
+                contactLink("GitHub", "@Eragoneq", "https://github.com/Eragoneq")
+                contactLink("Twitter (X)", "@eragoneq", "https://x.com/eragoneq")
+                contactLink("Mastodon", "@eragoneq@infosec.exchange", "https://infosec.exchange/@eragoneq")
+            }
+        }
+
+        homeSection("about", "About me") {
+            div(classes = "home-prose") {
+                p {
+                    +"I'm a general software enthusiast, Linux desktop user, Minecrafter and tea enjoyer. "
+                    +"This site is a personal project and part of a larger effort to collect my work and skills online."
+                }
+                p {
+                    +"I keep the organized and curated content here. I'm also working on a "
+                    a(href = "https://garden.eragoneq.fyi") { +"Digital Garden" }
+                    +" for more informal notes and information."
                 }
             }
         }
 
-        h2(classes = "section-label") { +"Selected work" }
-        if (projects.isEmpty()) {
-            emptyEntriesNote()
-        } else {
-            ul(classes = "card-list") {
-                projects.take(context.site.homeProjectLimit).forEachIndexed { index, project ->
-                    projectCardRow(
-                        href = context.site.sitePath(project.url),
-                        date = artifactStamp(index + 1, project.date?.year ?: context.year),
-                        titleText = project.title,
-                        desc = project.subtitle,
-                        status = StatusBadge.from(project.status),
-                    )
+        homeSection("projects", "Projects") {
+            if (projects.isEmpty()) {
+                emptyEntriesNote()
+            } else {
+                ul(classes = "card-list") {
+                    projects.take(context.site.homeProjectLimit).forEach { project ->
+                        projectCardRow(
+                            href = context.site.sitePath(project.url),
+                            date = cardDate(project.date),
+                            titleText = project.title,
+                            desc = project.subtitle,
+                            status = StatusBadge.from(project.status),
+                        )
+                    }
                 }
+            }
+            p(classes = "section-more") {
+                a(href = context.site.sitePath(NavItem.PROJECTS.path)) { +"All projects →" }
             }
         }
 
-        div {
-            style = "margin-top: 48px"
-            a(classes = "btn", href = context.site.sitePath(NavItem.ABOUT.path)) { +"About me →" }
+        homeSection("writing", "Writing") {
+            if (posts.isEmpty()) {
+                emptyEntriesNote()
+            } else {
+                ul(classes = "card-list") {
+                    posts.take(context.site.homePostLimit).forEach { post ->
+                        cardRow(
+                            href = context.site.sitePath(post.url),
+                            date = cardDate(post.date),
+                            titleText = post.title,
+                            tag = post.tag,
+                            desc = post.subtitle,
+                        )
+                    }
+                }
+            }
+            p(classes = "section-more") {
+                a(href = context.site.sitePath(NavItem.BLOG.path)) { +"All posts →" }
+            }
         }
     }
 
 fun blogPage(posts: List<Entry>, context: BuildContext): String =
-    basePage("blog", NavItem.BLOG, context) {
+    basePage("Blog", NavItem.BLOG, context) {
         pageHead(
-            kicker = "/blog - written content",
-            heading = "Blog Posts",
+            heading = "Blog posts",
             lede = "My notes on projects, code and all the random stuff in between.",
-            deco = {
-                span(classes = "mg-frame deco") {
-                    attributes["aria-hidden"] = "true"
-                    i()
-                }
-            },
         )
-
         if (posts.isEmpty()) {
             emptyEntriesNote()
         } else {
@@ -97,6 +100,7 @@ fun blogPage(posts: List<Entry>, context: BuildContext): String =
                         href = context.site.sitePath(post.url),
                         date = cardDate(post.date),
                         titleText = post.title,
+                        tag = post.tag,
                         desc = post.subtitle,
                     )
                 }
@@ -105,32 +109,16 @@ fun blogPage(posts: List<Entry>, context: BuildContext): String =
     }
 
 fun projectsPage(projects: List<Entry>, context: BuildContext): String =
-    basePage("projects", NavItem.PROJECTS, context) {
-        val activeCount = projects.count { StatusBadge.from(it.status) == StatusBadge.ACTIVE }
-        val doneCount = projects.count { StatusBadge.from(it.status) == StatusBadge.DONE }
-        pageHead(
-            kicker = "/projects - built output",
-            heading = "Artifacts",
-            meta = listOf(
-                "TOTAL" to "%02d".format(projects.size),
-                "ACTIVE" to "%02d".format(activeCount),
-                "DONE" to "%02d".format(doneCount),
-            ),
-            deco = {
-                span(classes = "mg-scan deco") {
-                    attributes["aria-hidden"] = "true"
-                }
-            },
-        )
-
+    basePage("Projects", NavItem.PROJECTS, context) {
+        pageHead(heading = "Projects")
         if (projects.isEmpty()) {
             emptyEntriesNote()
         } else {
             ul(classes = "card-list") {
-                projects.forEachIndexed { index, project ->
+                projects.forEach { project ->
                     projectCardRow(
                         href = context.site.sitePath(project.url),
-                        date = artifactStamp(index + 1, project.date?.year ?: context.year),
+                        date = cardDate(project.date),
                         titleText = project.title,
                         desc = project.subtitle,
                         status = StatusBadge.from(project.status),
@@ -140,139 +128,41 @@ fun projectsPage(projects: List<Entry>, context: BuildContext): String =
         }
     }
 
-fun aboutPage(context: BuildContext): String =
-    basePage("about", NavItem.ABOUT, context) {
-        pageHead(
-            kicker = "/about - profile",
-            heading = "Who is running this",
-            deco = {
-                span(classes = "mg-frame deco") {
-                    attributes["aria-hidden"] = "true"
-                    i()
-                }
-            },
-        )
-
-        div(classes = "about-grid") {
-            div {
-                p {
-                    +"Hi, I'm Michał, known on the Internet as Eragoneq and that's my amazing personal website. "
-                    +"I'm a general software enthusiast with a passion for cybersecurity. Fellow "
-                    span(classes = "lod") {
-                        attributes["title"] = "Arch btw"
-                        +"LinuxOnDesktop"
-                    }
-                    +" user, Minecrafter by trait and tea enjoyer."
-                }
-                p {
-                    +"This website is a personal project I'm working on and is part of a larger "
-                    +"effort to build a collection of my work and skills online."
-                }
-                p {
-                    +"It houses mainly the organized and curated content, while I plan to also host "
-                    +"more information in my "
-                    a(href = "https://garden.eragoneq.fyi", classes = "lod") { +"Digital Garden" }
-                    +". More information on the actual website and in a separate blog post."
-                }
-            }
-
-            ul(classes = "facts") {
-                fact("Alias", "Eragoneq")
-                fact("Desktop", "Linux")
-                fact("Focus", "Cybersecurity, Privacy")
-                fact("Main game", "Minecraft")
-                fact("Fuel", "Tea")
-                fact("Other projects", "garden.eragoneq.fyi")
-                li(classes = "deco-row") {
-                    attributes["aria-hidden"] = "true"
-                    span(classes = "mg-barcode") {}
-                }
-            }
+/** Keep existing bookmarks working after consolidating the personal pages. */
+fun homeSectionRedirect(section: String, context: BuildContext): String {
+    val destination = context.site.sitePath("index.html") + "#$section"
+    return "<!DOCTYPE html>\n" + createHTML().html {
+        attributes["lang"] = "en"
+        head {
+            meta(charset = "UTF-8")
+            meta(name = "viewport", content = "width=device-width, initial-scale=1.0")
+            meta { attributes["http-equiv"] = "refresh"; content = "0;url=$destination" }
+            meta(name = "robots", content = "noindex")
+            link(rel = "canonical", href = context.site.absoluteUrl("index.html"))
+            title("Moved to the homepage")
         }
-
-        h2(classes = "section-label") { +"Current to-dos" }
-        ul(classes = "card-list") {
-            listOf(
-                "Fill in more content",
-                "RSS feed ✅",
-                "GIF banner (88x31) and web-ring section",
-            ).forEachIndexed { index, todo ->
-                cardRow(
-                    href = "#",
-                    date = "%02d".format(index + 1),
-                    titleText = todo,
-                    tag = "-*-",
-                    desc = "",
-                )
-            }
+        body {
+            p { a(href = destination) { +"Continue to the homepage" } }
         }
-    }
-
-fun contactPage(context: BuildContext): String =
-    basePage("contact", NavItem.CONTACT, context) {
-        pageHead(
-            kicker = "/contact - open channel",
-            heading = "Get in touch",
-            lede = "Collaboration, questions or just a way to say hi.",
-            deco = {
-                span(classes = "mg-signal deco") {
-                    attributes["aria-hidden"] = "true"
-                    i { attributes["style"] = "height:25%" }
-                    i { attributes["style"] = "height:50%" }
-                    i { attributes["style"] = "height:75%" }
-                    i(classes = "off") { attributes["style"] = "height:100%" }
-                }
-            },
-        )
-
-        h2(classes = "section-label") { +"Channels" }
-        ul(classes = "contact-links") {
-            contactLink(
-                label = "E-Mail",
-                handle = "eragoneq [at] pm.me",
-                href = "mailto:eragoneq@pm.me",
-            )
-            contactLink(
-                label = "GitHub",
-                handle = "@Eragoneq",
-                href = "https://github.com/Eragoneq",
-            )
-            contactLink(
-                label = "Twitter (X)",
-                handle = "@eragoneq",
-                href = "https://x.com/eragoneq",
-            )
-            contactLink(
-                label = "Mastodon",
-                handle = "@eragoneq@infosec.exchange",
-                href = "https://infosec.exchange/@eragoneq",
-            )
-        }
-    }
-
-private fun MAIN.emptyEntriesNote() {
-    p(classes = "lede") {
-        +"No entries yet. Add markdown files to "
-        code { +"content/" }
-        +" to publish."
     }
 }
 
-private fun artifactStamp(number: Int, entryYear: Int): String =
-    "P-%02d / %04d".format(number, entryYear)
-
-private fun UL.fact(key: String, value: String) {
-    li {
-        span(classes = "k") { +key }
-        +value
+private fun MAIN.homeSection(sectionId: String, heading: String, content: DIV.() -> Unit) {
+    section(classes = "home-section") {
+        id = sectionId
+        attributes["aria-labelledby"] = "$sectionId-heading"
+        h2 { id = "$sectionId-heading"; +heading }
+        div(classes = "home-section-content") { content() }
     }
+}
+
+private fun FlowContent.emptyEntriesNote() {
+    p(classes = "empty-note") { +"Nothing published here yet. Check back soon." }
 }
 
 private fun UL.contactLink(label: String, handle: String, href: String) {
     li {
-        a(href = href) {
-            span(classes = "label") { +label }
-            span(classes = "handle") { +handle }
-        }
+        span(classes = "label") { +label }
+        a(href = href, classes = "handle") { +handle }
     }
 }

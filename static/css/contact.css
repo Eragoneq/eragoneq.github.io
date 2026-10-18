@@ -1,38 +1,20 @@
-/* contact.css — channel link rows */
-
-.contact-links {
-  list-style: none;
-  border-top: 1px solid var(--line);
-}
-
+/* Contact details are text links, grouped with their channel names. */
+.contact-links { list-style: none; }
 .contact-links li {
-  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 8px 16px;
+  align-items: baseline;
+  min-height: 30px;
 }
+.contact-links .label { color: var(--muted); font-size: 12px; }
+.contact-links .handle { color: var(--accent); overflow-wrap: anywhere; width: fit-content; }
+.contact-links .handle:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-.contact-links a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: background 0.15s ease;
+@media (max-width: 420px) {
+  .contact-links li { grid-template-columns: 88px minmax(0, 1fr); gap: 8px 12px; }
 }
-
-.contact-links a:hover {
-  background: var(--bg-elevated);
-}
-
-.contact-links a:hover .handle {
-  color: var(--accent);
-}
-
-.contact-links .label {
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.2em;
-}
-
-.handle {
-  transition: color 0.15s ease;
+@media (pointer: coarse) {
+  .contact-links .handle { min-height: 44px; display: inline-flex; align-items: center; }
+  .contact-links li { align-items: center; }
 }

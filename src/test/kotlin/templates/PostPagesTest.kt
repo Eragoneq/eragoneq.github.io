@@ -10,7 +10,6 @@ class PostPagesTest {
     fun `nested entry navigation is root relative`() {
         val page = blogPostPage(
             entry = testEntry("posts/nested/current.html"),
-            transmissionNo = 2,
             prev = testEntry("posts/archive/older.html"),
             next = testEntry("posts/newer.html"),
             context = testBuildContext(basePath = "/journal"),
@@ -24,7 +23,6 @@ class PostPagesTest {
     fun `single entry navigation links back to root-relative listing`() {
         val page = blogPostPage(
             entry = testEntry("posts/nested/current.html"),
-            transmissionNo = 1,
             prev = null,
             next = null,
             context = testBuildContext(basePath = "/journal"),

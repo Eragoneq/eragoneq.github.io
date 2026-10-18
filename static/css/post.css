@@ -3,7 +3,9 @@
 .post-shell {
   position: relative;
   z-index: 1;
-  /*max-width: 72ch;*/
+  max-width: 78ch;
+  margin-inline: auto;
+  min-width: 0;
   margin-top: 8px;
 }
 
@@ -11,7 +13,7 @@
   background: var(--bg);
   border: 1px solid var(--line);
   padding: clamp(24px, 5vw, 56px);
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.85;
 }
 
@@ -80,6 +82,8 @@
 }
 
 .prose pre {
+  max-width: 100%;
+  overflow-wrap: normal;
   margin: 24px 0;
   background: #000;
   border: 1px solid var(--line);
@@ -130,6 +134,7 @@
 }
 
 .post-nav {
+  flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -143,8 +148,17 @@
 }
 
 .post-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--muted);
   transition: color 0.15s ease;
+}
+
+.prose img, .prose video { max-width: 100%; height: auto; }
+.prose table { display: block; max-width: 100%; overflow-x: auto; }
+@media (max-width: 680px) {
+  .post-body { padding: 20px 16px; }
 }
 
 .post-nav a:hover {

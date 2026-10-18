@@ -1,68 +1,42 @@
-/* header.css — sticky site header, brand mark, primary nav */
-
+/* Three persistent destinations, with labels that stay intact. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px var(--pad);
+  padding: 12px var(--pad);
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(8px);
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 12px;
+  background: var(--bg);
 }
-
-.brand {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.brand .brand-mark {
-  display: inline;
-  height: 17px;
-  width: auto;
-  transition: opacity 0.15s ease;
-  vertical-align: middle;
-}
-
-.brand:hover .brand-mark {
-  opacity: 0.6;
-}
-
-.site-nav {
-  display: flex;
-  gap: clamp(14px, 3vw, 32px);
-  overflow-x: auto;
-}
-
+.brand { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding-right: 8px; }
+.brand-mark { width: 43px; height: 17px; }
+.site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(8px, 2vw, 24px); }
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 4px;
+  font-family: var(--font-display);
+  font-size: var(--text-secondary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
   color: var(--muted);
-  transition: color 0.15s ease;
-  padding: 4px 2px;
 }
-
-.site-nav a:hover {
-  color: var(--ink);
+@media (max-width: 360px) {
+  .site-header { flex-wrap: wrap; justify-content: center; gap: 0 16px; }
+  .site-nav { flex-wrap: wrap; justify-content: center; }
 }
-
-.site-nav a[aria-current="page"] {
-  color: var(--ink);
-}
-
-.site-nav a[aria-current="page"]::before {
-  content: "[ ";
-  color: var(--accent);
-}
-
-.site-nav a[aria-current="page"]::after {
-  content: " ]";
-  color: var(--accent);
+.site-nav a:hover { color: var(--ink); }
+.site-nav a[aria-current="page"] { color: var(--accent); }
+@media (max-width: 420px) {
+  .site-header { gap: 12px; padding-top: 8px; padding-bottom: 8px; }
+  .site-nav { gap: 8px; }
+  .site-nav a { font-size: 0.8125rem; }
 }

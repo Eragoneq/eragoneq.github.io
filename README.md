@@ -18,6 +18,11 @@ dates instead of warning and continuing.
 
 ## Site configuration
 
+The homepage combines the introduction, about information, contact channels,
+selected projects, and recent posts. The former `about.html` and `contact.html`
+URLs forward to their corresponding homepage sections. Blog and project indexes
+remain separate. The shared footer displays the actual generation timestamp in UTC.
+
 Site metadata and deployment URLs live in `site.yml`. `base_url` is the scheme
 and host only. Set `base_path` to a root-relative path such as `/blog` when the
 generated files are served below a project path; leave it empty for a domain

@@ -20,9 +20,7 @@ fun sitemap(posts: List<Entry>, projects: List<Entry>, context: BuildContext): S
     val staticPages = listOf(
         "/index.html",
         "/blog.html",
-        "/projects.html",
-        "/about.html",
-        "/contact.html"
+        "/projects.html"
     )
 
     val allUrls = mutableListOf<String>()

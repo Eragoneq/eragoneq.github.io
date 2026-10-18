@@ -6,8 +6,6 @@ last_update: 2026-08-28
 status: Active
 ---
 
-# HomeLab
-
 ## Introduction
 
 In the modern day and age, when everything is digital, it's hard to keep everything under control.
@@ -24,7 +22,7 @@ Currently, the stack mainly consists of a few small servers:
 * Small Dell Optiplex PC
 * Old Dell PowerEdge server
 * Raspberry Pi 5
-# 
+
 This is enough to run most of the basic software that is accessible to 1 user, for now, but it should be able to handle a few users locally with no issues.
 
 

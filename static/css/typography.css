@@ -2,7 +2,7 @@
 
 .kicker {
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--text-meta);
   text-transform: uppercase;
   letter-spacing: 0.28em;
   margin-bottom: 18px;
@@ -46,7 +46,7 @@ h1 .cursor {
   flex-wrap: wrap;
   gap: 12px 28px;
   margin-top: 28px;
-  font-size: 11px;
+  font-size: var(--text-meta);
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--muted);

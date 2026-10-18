@@ -23,7 +23,7 @@ class SiteBuilder(
      * Runs the complete build pipeline:
      * 1. Collect entries from markdown content
      * 2. Copy static assets
-     * 3. Generate static pages (index, projects, about)
+     * 3. Generate indexes and forwarding pages for former personal-page URLs
      * 4. Generate individual entry pages (blog posts, project posts)
      *
      * @return a pair of (postCount, projectCount) for reporting
@@ -81,20 +81,19 @@ class SiteBuilder(
         writePage(outputDir / "index.html", homePage(posts, projects, context))
         writePage(outputDir / "blog.html", blogPage(posts, context))
         writePage(outputDir / "projects.html", projectsPage(projects, context))
-        writePage(outputDir / "about.html", aboutPage(context))
-        writePage(outputDir / "contact.html", contactPage(context))
+        writePage(outputDir / "about.html", homeSectionRedirect("about", context))
+        writePage(outputDir / "contact.html", homeSectionRedirect("contact", context))
     }
 
     private fun writeEntryPages(entries: List<Entry>, context: BuildContext) {
         entries.forEachIndexed { index, entry ->
             val outPath = outputDir / entry.outputRelPath
-            val number = entries.size - index
             // Newest-first order: the next index holds the older neighbour.
             val older = entries.getOrNull(index + 1)
             val newer = entries.getOrNull(index - 1)
             val html = when (entry.kind) {
-                EntryKind.POST -> blogPostPage(entry, number, older, newer, context)
-                EntryKind.PROJECT -> projectPostPage(entry, number, older, newer, context)
+                EntryKind.POST -> blogPostPage(entry, older, newer, context)
+                EntryKind.PROJECT -> projectPostPage(entry, older, newer, context)
             }
             writePage(outPath, html)
         }
