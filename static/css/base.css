@@ -1,0 +1,175 @@
+@font-face {
+  font-family: "Chakra Petch";
+  src: url("../fonts/Chakra_Petch/ChakraPetch-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Monaspace Argon";
+  src: url("../fonts/Monaspace_Argon/Monaspace-Argon-Var.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-feature-settings: "calt" 1;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Monaspace Krypton";
+  src: url("../fonts/Monaspace_Krypton/Monaspace-Krypton-Var.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Mono";
+  src: url("../fonts/Space_Mono/SpaceMono-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Mono";
+  src: url("../fonts/Space_Mono/SpaceMono-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  /* A softer charcoal is the default; other surfaces remap the same roles. */
+  color-scheme: dark;
+  --bg: #252327;
+  --bg-elevated: #303033;
+  --bg-code: #1e1c20;
+  --ink: #ddd9d5;
+  --muted: #b8b1ae;
+  --line: #524044;
+  --accent: #f18b37;
+  --status-active: #3ddc84;
+  --status-wip: #ffb020;
+  --selection-ink: #000;
+
+  --font-display: "Chakra Petch", sans-serif;
+  --font-body: "Monaspace Argon", monospace;
+  --font-secondary: "Monaspace Krypton", monospace;
+  --font-code: "Space Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --pad: clamp(20px, 5vw, 64px);
+  --text-body: 1rem;
+  --text-secondary: 0.875rem;
+  --text-meta: 0.75rem;
+}
+
+html[data-theme="warm"] {
+  --bg: #2b2424;
+  --bg-elevated: #382d2c;
+  --bg-code: #211b1b;
+  --ink: #e1d7d1;
+  --muted: #c0b1ab;
+  --line: #604644;
+  --accent: #f79a4e;
+}
+
+html[data-theme="original"] {
+  --bg: #040308;
+  --bg-elevated: #1e0304;
+  --bg-code: #000;
+  --ink: #f2f2f2;
+  --muted: #9d9d9d;
+  --line: #420203;
+  --accent: #f27405;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #e2e3e3;
+  --bg-elevated: #d9dadb;
+  --bg-code: #d5d6d7;
+  --ink: #282427;
+  --muted: #595b5e;
+  --line: #b8babc;
+  --accent: #b13b00;
+  --status-active: #007535;
+  --status-wip: #825000;
+  --selection-ink: #fff;
+}
+
+html[data-theme="light"] .brand-mark,
+html[data-theme="light"] .footer-mark img { filter: invert(1); }
+
+/* Small accents can use the brighter brand orange independently of text. */
+html[data-theme="light"] .home-section::after,
+html[data-theme="light"] .page-head::after { background: #f27405; }
+html[data-theme="light"] .theme-option[aria-pressed="true"]::before {
+  background: #f27405;
+  border-color: #f27405;
+}
+/* Maintain legibility on the slightly darker hover and code surfaces. */
+html[data-theme="light"] .card a:hover .card-title,
+html[data-theme="light"] .prose code { color: #a43900; }
+html[data-theme="light"] .card a:hover .status.active { color: #006838; }
+html[data-theme="light"] .prose pre code { color: var(--ink); }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--selection-ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main { overflow-wrap: anywhere; }
+img { max-width: 100%; height: auto; }
+pre, code, kbd, samp { font-family: var(--font-code); }
+
+.skip-link {
+  position: fixed;
+  inset: 8px auto auto 8px;
+  z-index: 20;
+  padding: 10px 16px;
+  background: var(--bg);
+  color: var(--accent);
+  transform: translateY(-150%);
+}
+.skip-link:focus { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

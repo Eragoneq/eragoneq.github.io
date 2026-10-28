@@ -1,0 +1,49 @@
+.lede,
+.meta-row,
+.card-date,
+.card-tag,
+.card-desc,
+.contact-links .label,
+.section-more,
+.empty-note,
+.footer-mark,
+.footer-meta,
+.prose blockquote cite {
+  font-family: var(--font-secondary);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(30px, 6vw, 58px);
+}
+
+.lede {
+  color: var(--muted);
+  max-width: 60ch;
+  margin-top: 20px;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 28px;
+  font-size: var(--text-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.meta-row span b {
+  color: var(--ink);
+  font-weight: 400;
+}

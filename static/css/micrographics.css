@@ -1,0 +1,17 @@
+.mg-dither {
+  color: var(--muted);
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+}
+
+.mg-ditherfade {
+  width: 132px;
+  height: 40px;
+  background-image: repeating-conic-gradient(var(--ink) 0% 25%, transparent 0% 50%);
+  background-size: 8px 8px;
+  -webkit-mask-image: linear-gradient(90deg,
+    #000 0 34%, rgba(0, 0, 0, 0.55) 34% 67%, rgba(0, 0, 0, 0.18) 67% 100%);
+  mask-image: linear-gradient(90deg,
+    #000 0 34%, rgba(0, 0, 0, 0.55) 34% 67%, rgba(0, 0, 0, 0.18) 67% 100%);
+}

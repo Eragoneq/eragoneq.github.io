@@ -1,0 +1,19 @@
+.contact-links { list-style: none; }
+.contact-links li {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 8px 16px;
+  align-items: baseline;
+  min-height: 30px;
+}
+.contact-links .label { color: var(--muted); font-size: 12px; }
+.contact-links .handle { color: var(--accent); overflow-wrap: anywhere; width: fit-content; }
+.contact-links .handle:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 420px) {
+  .contact-links li { grid-template-columns: minmax(0, 1fr); gap: 0; margin-bottom: 8px; }
+}
+@media (pointer: coarse) {
+  .contact-links .handle { display: inline-block; min-height: 44px; padding-block: 8px; }
+  .contact-links li { align-items: center; }
+}
